@@ -44,14 +44,17 @@ public class Turtle extends Publisher implements Serializable {
     public Heading getHeading() { return heading; }
     public Color getColor() { return color; }
     public void setColor(Color color) { this.color = color; }
-    public void turn(Heading heading) { this.heading = heading; } // used?
+    public void turn(Heading heading) {
+        this.heading = heading;
+        notifySubscribers();
+    } // used?
     public Iterator<Point> iterator() { return path.iterator(); }
     public void clear() {
         path.clear();
         notifySubscribers();
     }
 
-    public void move(Integer steps) {
+    /*public void move(Integer steps) {
         switch(heading) {
             case WEST: {
                 int xc = location.x - steps;
@@ -105,6 +108,35 @@ public class Turtle extends Publisher implements Serializable {
 
             }
         }
+    }
+*/
+    public void move(Integer steps) {
+        switch(heading) {
+            case WEST: {
+                int xc = location.x - steps;
+                if (xc < 0) xc = WORLD_SIZE + xc; // xc is negative
+                location = new Point(xc, location.y, color, !penUp);
+                break;
+            } case EAST: {
+                int xc = (location.x + steps) % WORLD_SIZE;
+                if (xc < 0) xc = WORLD_SIZE + xc; // xc is negative
+                location = new Point(xc, location.y, color, !penUp);
+                break;
+            } case NORTH: {
+                int yc = location.y - steps;
+                if (yc < 0) yc = WORLD_SIZE + yc; // yc is negative
+                location = new Point(location.x, yc, color, !penUp);
+                break;
+            } case SOUTH: {
+                int yc = (location.y + steps) % WORLD_SIZE;
+                location = new Point(location.x, yc, color, !penUp);
+                break;
+            } default: {
+
+            }
+        }
+        path.add(location);
+        notifySubscribers();
     }
 /*
     public void move(Integer steps) {

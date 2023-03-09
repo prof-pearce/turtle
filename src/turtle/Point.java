@@ -8,10 +8,14 @@ class Point implements Serializable {
     Color color;
     boolean endPoint;
 
-    public Point(int x, int y, Color color) {
+    public Point(int x, int y, Color color, boolean end) {
         this.x = x;
         this.y = y;
         this.color = color;
-        endPoint = false;
+        endPoint = end;
+    }
+
+    public Point(int x, int y, Color color) {
+        this(x, y, color, false);
     }
 }

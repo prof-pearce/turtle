@@ -135,14 +135,14 @@ public class TurtlePanel extends JPanel implements ActionListener {
                     String fName = Utilities.getFileName((String)null, true);
                     ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
                     this.turtle = (Turtle)is.readObject();
-                    this.view.setTurtle(turtle);
+                    this.view.setMyTurtle(turtle);
                     is.close();
                 } catch (Exception var5) {
                     Utilities.error(var5.getMessage());
                 }
             } else if (cmmd == "New") {
                 turtle = new Turtle();
-                this.view.setTurtle(turtle);
+                this.view.setMyTurtle(turtle);
             } else if (cmmd == "Quit") {
                 System.exit(1);
             } else if (cmmd == "About") {

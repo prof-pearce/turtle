@@ -13,8 +13,8 @@ public class Utilities {
     }
 
     public static boolean confirm(String query) {
-        int result = JOptionPane.showConfirmDialog((Component)null, query, "choose one", 0);
-        return result == 1;
+        int result = JOptionPane.showConfirmDialog((Component)null, query, "Confirm", JOptionPane.OK_CANCEL_OPTION);
+        return result == JOptionPane.OK_OPTION;
     }
 
     public static String ask(String query) {
