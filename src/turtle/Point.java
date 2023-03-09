@@ -8,6 +8,12 @@ class Point implements Serializable {
     Color color;
     boolean endPoint;
 
+    boolean penWasUp = false;
+
+    public boolean isPenWasUp() {
+        return penWasUp;
+    }
+
     public Point(int x, int y, Color color, boolean end) {
         this.x = x;
         this.y = y;
